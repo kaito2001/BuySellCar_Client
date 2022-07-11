@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { useContext } from "react";
+import { TransferContext } from "./context/TransferContext";
+import { AiFillPlayCircle } from "react-icons/ai";
 
 function App() {
+  const {currentAccount, connectWallet} = useContext(TransferContext);
+  console.log({currentAccount});
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Hello World</h1>
+      {!currentAccount && (
+            <button
+              type="button"
+              onClick={connectWallet}
+              className="flex flex-row justify-center items-center my-5 bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd]"
+            >
+              <AiFillPlayCircle className="text-white mr-2" />
+              <p className="text-white text-base font-semibold">
+                Connect Wallet
+              </p>
+            </button>
+          )}
     </div>
   );
 }
